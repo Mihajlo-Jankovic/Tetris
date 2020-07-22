@@ -370,44 +370,44 @@ void rotate_shape(playfield matrix, int rand_num, int *start_pos, int current_ro
 	switch(*shape_state)
 	{
 		case 1:	
-				for(i = *start_pos; i < *start_pos+*shape_len; i++)
-				{
-					if(temp1[ind] != EMPTY) matrix[current_row][i] = EMPTY;
-					if(temp2[ind] != EMPTY) matrix[current_row+1][i] = EMPTY;
-					ind++;
-				}
-				
-				ind = 0;
-				for(i = current_row; i < current_row+*shape_len; i++)
-				{
-					if(temp1_shape[ind] != EMPTY) matrix[i][*start_pos] = rand_num;
-					if(temp2_shape[ind] != EMPTY) matrix[i][*start_pos+1] = rand_num;
-					ind++;
-				}
-				
-				*shape_state = 2;
+			for(i = *start_pos; i < *start_pos+*shape_len; i++)
+			{
+				if(temp1[ind] != EMPTY) matrix[current_row][i] = EMPTY;
+				if(temp2[ind] != EMPTY) matrix[current_row+1][i] = EMPTY;
+				ind++;
+			}
+
+			ind = 0;
+			for(i = current_row; i < current_row+*shape_len; i++)
+			{
+				if(temp1_shape[ind] != EMPTY) matrix[i][*start_pos] = rand_num;
+				if(temp2_shape[ind] != EMPTY) matrix[i][*start_pos+1] = rand_num;
+				ind++;
+			}
+
+			*shape_state = 2;
 			break;
 			
 		case 2:
-				for(i = current_row; i < current_row+*shape_len; i++)
-				{
-					if(temp1[ind] != EMPTY) matrix[i][*start_pos] = EMPTY;
-					if(temp2[ind] != EMPTY) matrix[i][*start_pos+1] = EMPTY;
-					ind++;
-				}
-				
-				ind = *shape_len-1;
-				for(i = *start_pos+*shape_len-1; i >= *start_pos; i--)
-				{
-					if(temp1_shape[ind] != EMPTY) matrix[current_row][i] = rand_num;
-					if(temp2_shape[ind] != EMPTY) matrix[current_row+1][i] = rand_num;
-					ind--;
-				}
-				
-				if(*state_ind == 1) *state_ind = 2;
-				else *state_ind = 1;
-				
-				*shape_state = 1;
+			for(i = current_row; i < current_row+*shape_len; i++)
+			{
+				if(temp1[ind] != EMPTY) matrix[i][*start_pos] = EMPTY;
+				if(temp2[ind] != EMPTY) matrix[i][*start_pos+1] = EMPTY;
+				ind++;
+			}
+
+			ind = *shape_len-1;
+			for(i = *start_pos+*shape_len-1; i >= *start_pos; i--)
+			{
+				if(temp1_shape[ind] != EMPTY) matrix[current_row][i] = rand_num;
+				if(temp2_shape[ind] != EMPTY) matrix[current_row+1][i] = rand_num;
+				ind--;
+			}
+
+			if(*state_ind == 1) *state_ind = 2;
+			else *state_ind = 1;
+
+			*shape_state = 1;
 			break;	
 	}
 }
@@ -1522,8 +1522,8 @@ void win_tetris(WINDOW * win_border, WINDOW * win_main)
 	
 	wmove(win_main,0,0);
 	
-    wclear(win_main);
-    wrefresh(win_border);
+    	wclear(win_main);
+    	wrefresh(win_border);
 }
 
 void win_help(void)
@@ -1696,15 +1696,15 @@ int main()
 	WINDOW * win_main = subwin(win_border,ROW,COL,Y+1,X+1);
 	
 	struct player players[SCOREBOARD_MAX]; //Players array
-    arr_players_init(players);
+    	arr_players_init(players);
 	read_players(players);
 	
 	win_tetris(win_border, win_main);
 	win_stats(0,0,0);
-    win_names();
-    win_help();
-    win_next(0,0,0,0);
-    win_header();
+    	win_names();
+    	win_help();
+    	win_next(0,0,0,0);
+    	win_header();
     
 	int flag = 1, color_ind = 0;
 	playfield matrix; //char matrix[ROW][COL];
